@@ -1,5 +1,6 @@
 import 'package:componentes/src/models/Vehiculo.dart';
 import 'package:componentes/src/pages/vehiculos_detalles_page.dart';
+import 'package:componentes/src/utils/Constanst.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
@@ -21,7 +22,7 @@ class _ClientesDetallesPageState extends State<ClientesDetallesPage> {
 
   getClientesDetalles() async {
     http.Response response =
-        await http.get('http://10.0.2.2:4000/clientes/${this.idCliente}');
+        await http.get(Constants.URL_API + '/clientes/${this.idCliente}');
 
     this.cliente = json.decode(response.body)[0];
     debugPrint(response.body.toString());

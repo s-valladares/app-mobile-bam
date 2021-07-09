@@ -1,6 +1,7 @@
 import 'package:componentes/src/pages/clientes_detalles_page.dart';
 import 'package:componentes/src/pages/concesionarios_detalles_page.dart';
 import 'package:componentes/src/pages/vehiculos_detalles_page.dart';
+import 'package:componentes/src/utils/Constanst.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
@@ -16,7 +17,7 @@ class _ConcesariosPageState extends State<ConcesariosPage> {
 
   getConcesionarios() async {
     http.Response response =
-        await http.get('http://10.0.2.2:4000/concesionario');
+        await http.get(Constants.URL_API + '/concesionario');
     concesionarios = json.decode(response.body);
 
     debugPrint(concesionarios.toString());
