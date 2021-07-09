@@ -11,7 +11,6 @@ class VehiculosPage extends StatefulWidget {
 
 class _VehiculosPageState extends State<VehiculosPage> {
   List vehiculos;
-  final idVehiculo = 0;
 
   getVehiculos() async {
     http.Response response = await http.get('http://10.0.2.2:4000/vehiculos');

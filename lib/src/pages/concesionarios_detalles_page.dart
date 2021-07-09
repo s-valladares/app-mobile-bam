@@ -5,25 +5,27 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 
-class VehiculosDetallesPage extends StatefulWidget {
-  final int idVehiculo;
-  VehiculosDetallesPage({this.idVehiculo});
+class ConcesionariosDetallesPage extends StatefulWidget {
+  final int idConcesionario;
+  ConcesionariosDetallesPage({this.idConcesionario});
 
   @override
-  createState() => _VehiculosDetallesPageState(idVehiculo: idVehiculo);
+  createState() =>
+      _ConcesionariosDetallesPageState(idConcesionario: idConcesionario);
 }
 
-class _VehiculosDetallesPageState extends State<VehiculosDetallesPage> {
-  final int idVehiculo;
-  _VehiculosDetallesPageState({this.idVehiculo});
+class _ConcesionariosDetallesPageState
+    extends State<ConcesionariosDetallesPage> {
+  final int idConcesionario;
+  _ConcesionariosDetallesPageState({this.idConcesionario});
 
-  Map vehiculo;
+  Map concesionario;
 
-  getVehiculosDetalles() async {
-    http.Response response =
-        await http.get('http://10.0.2.2:4000/vehiculos/${this.idVehiculo}');
+  getConcesionariosDetalles() async {
+    http.Response response = await http
+        .get('http://10.0.2.2:4000/concesionario/${this.idConcesionario}');
 
-    this.vehiculo = json.decode(response.body)[0];
+    this.concesionario = json.decode(response.body)[0];
     debugPrint(response.body.toString());
 
     setState(() {
@@ -34,18 +36,18 @@ class _VehiculosDetallesPageState extends State<VehiculosDetallesPage> {
   @override
   void initState() {
     super.initState();
-    getVehiculosDetalles();
+    getConcesionariosDetalles();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Detalles del vehículo'),
+          title: Text('Detalles del concesionario'),
           backgroundColor: Colors.blueGrey,
         ),
         body: Container(
-            height: 250, child: Card(child: detalles(this.vehiculo))));
+            height: 180, child: Card(child: detalles(this.concesionario))));
   }
 
   Widget detalles(Map vehiculo) {
@@ -55,90 +57,60 @@ class _VehiculosDetallesPageState extends State<VehiculosDetallesPage> {
           children: [
             Row(
               children: [
-                Text("Marca: ",
+                Text("Tienda: ",
                     style:
                         TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500)),
-                Text(this.vehiculo["marca"],
+                Text(this.concesionario["nombre"],
                     style:
                         TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400))
               ],
             ),
             Row(
               children: [
-                Text("Linea: ",
+                Text("Razón social: ",
                     style:
                         TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500)),
-                Text(this.vehiculo["linea"],
+                Text(this.concesionario["razon"],
                     style:
                         TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400))
               ],
             ),
             Row(
               children: [
-                Text("Modelo: ",
+                Text("Correo: ",
                     style:
                         TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500)),
-                Text(this.vehiculo["modelo"].toString(),
+                Text(this.concesionario["email"],
                     style:
                         TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400))
               ],
             ),
             Row(
               children: [
-                Text("Color: ",
+                Text("Departamento: ",
                     style:
                         TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500)),
-                Text(this.vehiculo["color"],
+                Text(this.concesionario["departamento"],
                     style:
                         TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400))
               ],
             ),
             Row(
               children: [
-                Text("Tipo: ",
+                Text("Municipio: ",
                     style:
                         TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500)),
-                Text(this.vehiculo["tipo"],
+                Text(this.concesionario["municipio"],
                     style:
                         TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400))
               ],
             ),
             Row(
               children: [
-                Text("Precio: ",
+                Text("Teléfono: ",
                     style:
                         TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500)),
-                Text(this.vehiculo["precio"].toString(),
-                    style:
-                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400))
-              ],
-            ),
-            Row(
-              children: [
-                Text("Forma de pago: ",
-                    style:
-                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500)),
-                Text(this.vehiculo["formaPago"],
-                    style:
-                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400))
-              ],
-            ),
-            Row(
-              children: [
-                Text("Cilindraje: ",
-                    style:
-                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500)),
-                Text(this.vehiculo["cc"].toString(),
-                    style:
-                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400))
-              ],
-            ),
-            Row(
-              children: [
-                Text("Motor: ",
-                    style:
-                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500)),
-                Text(this.vehiculo["v"],
+                Text(this.concesionario["telefono"],
                     style:
                         TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400))
               ],

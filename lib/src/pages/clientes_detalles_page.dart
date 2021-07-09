@@ -5,25 +5,25 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 
-class VehiculosDetallesPage extends StatefulWidget {
-  final int idVehiculo;
-  VehiculosDetallesPage({this.idVehiculo});
+class ClientesDetallesPage extends StatefulWidget {
+  final int idCliente;
+  ClientesDetallesPage({this.idCliente});
 
   @override
-  createState() => _VehiculosDetallesPageState(idVehiculo: idVehiculo);
+  createState() => _ClientesDetallesPageState(idCliente: idCliente);
 }
 
-class _VehiculosDetallesPageState extends State<VehiculosDetallesPage> {
-  final int idVehiculo;
-  _VehiculosDetallesPageState({this.idVehiculo});
+class _ClientesDetallesPageState extends State<ClientesDetallesPage> {
+  final int idCliente;
+  _ClientesDetallesPageState({this.idCliente});
 
-  Map vehiculo;
+  Map cliente;
 
-  getVehiculosDetalles() async {
+  getClientesDetalles() async {
     http.Response response =
-        await http.get('http://10.0.2.2:4000/vehiculos/${this.idVehiculo}');
+        await http.get('http://10.0.2.2:4000/clientes/${this.idCliente}');
 
-    this.vehiculo = json.decode(response.body)[0];
+    this.cliente = json.decode(response.body)[0];
     debugPrint(response.body.toString());
 
     setState(() {
@@ -34,18 +34,18 @@ class _VehiculosDetallesPageState extends State<VehiculosDetallesPage> {
   @override
   void initState() {
     super.initState();
-    getVehiculosDetalles();
+    getClientesDetalles();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Detalles del vehículo'),
+          title: Text('Detalles del cliente'),
           backgroundColor: Colors.blueGrey,
         ),
-        body: Container(
-            height: 250, child: Card(child: detalles(this.vehiculo))));
+        body:
+            Container(height: 200, child: Card(child: detalles(this.cliente))));
   }
 
   Widget detalles(Map vehiculo) {
@@ -55,90 +55,70 @@ class _VehiculosDetallesPageState extends State<VehiculosDetallesPage> {
           children: [
             Row(
               children: [
-                Text("Marca: ",
+                Text("Nombres: ",
                     style:
                         TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500)),
-                Text(this.vehiculo["marca"],
+                Text(this.cliente["nombres"],
                     style:
                         TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400))
               ],
             ),
             Row(
               children: [
-                Text("Linea: ",
+                Text("Apellidos: ",
                     style:
                         TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500)),
-                Text(this.vehiculo["linea"],
+                Text(this.cliente["apellidos"],
                     style:
                         TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400))
               ],
             ),
             Row(
               children: [
-                Text("Modelo: ",
+                Text("Dirección: ",
                     style:
                         TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500)),
-                Text(this.vehiculo["modelo"].toString(),
+                Text(this.cliente["direccion"],
                     style:
                         TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400))
               ],
             ),
             Row(
               children: [
-                Text("Color: ",
+                Text("Teléfono: ",
                     style:
                         TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500)),
-                Text(this.vehiculo["color"],
+                Text(this.cliente["telefono"],
                     style:
                         TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400))
               ],
             ),
             Row(
               children: [
-                Text("Tipo: ",
+                Text("Correo: ",
                     style:
                         TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500)),
-                Text(this.vehiculo["tipo"],
+                Text(this.cliente["email"],
                     style:
                         TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400))
               ],
             ),
             Row(
               children: [
-                Text("Precio: ",
+                Text("Nivel académico: ",
                     style:
                         TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500)),
-                Text(this.vehiculo["precio"].toString(),
+                Text(this.cliente["nivelAcademico"],
                     style:
                         TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400))
               ],
             ),
             Row(
               children: [
-                Text("Forma de pago: ",
+                Text("Profesión: ",
                     style:
                         TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500)),
-                Text(this.vehiculo["formaPago"],
-                    style:
-                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400))
-              ],
-            ),
-            Row(
-              children: [
-                Text("Cilindraje: ",
-                    style:
-                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500)),
-                Text(this.vehiculo["cc"].toString(),
-                    style:
-                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400))
-              ],
-            ),
-            Row(
-              children: [
-                Text("Motor: ",
-                    style:
-                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500)),
-                Text(this.vehiculo["v"],
+                Text(this.cliente["profesion"],
                     style:
                         TextStyle(fontSize: 18.0, fontWeight: FontWeight.w400))
               ],
