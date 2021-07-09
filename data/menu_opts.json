@@ -1,0 +1,30 @@
+{
+    "nombreApp": "Componentes",
+    "rutas": [
+        {
+            "ruta": "cotizaciones",
+            "icon": "cotizaciones",
+            "texto": "Cotizaciones"
+        },
+        {
+            "ruta": "clientes",
+            "icon": "clientes",
+            "texto": "Clientes"
+        },
+        {
+            "ruta": "vehiculos",
+            "icon": "vehiculo",
+            "texto": "Vehiculos"
+        },
+        {
+            "ruta": "agentes",
+            "icon": "agente",
+            "texto": "Agentes"
+        },
+        {
+            "ruta": "concesionarios",
+            "icon": "concesionario",
+            "texto": "Concesionarios"
+        }
+    ]
+}
