@@ -1,4 +1,4 @@
 class Constants {
   static const String URL_API =
-      "http://ec2-52-32-119-194.us-west-2.compute.amazonaws.com:4000";
+      "http://ec2-35-80-177-188.us-west-2.compute.amazonaws.com:4000";
 }
